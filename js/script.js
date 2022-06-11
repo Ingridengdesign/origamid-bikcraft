@@ -12,7 +12,7 @@ function ativarLink(link) {
 
 links.forEach(ativarLink);
 
-//ativar itens do orçamento
+// ativar itens do orçamento
 
 const parametros = new URLSearchParams(location.search);
 
@@ -24,3 +24,22 @@ function ativarProduto(parametro) {
 }
 
 parametros.forEach(ativarProduto);
+
+// perguntas frequentes
+
+const perguntas = document.querySelectorAll(".perguntas button");
+
+function ativarPergunta(evento) {
+  const pergunta = evento.currentTarget;
+  const controls = pergunta.getAttribute("aria-controls");
+  const resposta = document.getElementById(controls);
+
+  resposta.classList.toggle("ativa");
+  const ativa = resposta.classList.contains("ativa");
+  pergunta.setAttribute("aria-expanded", ativa);
+}
+
+function eventosPerguntas(pergunta) {
+  pergunta.addEventListener("click", ativarPergunta);
+}
+perguntas.forEach(eventosPerguntas);
